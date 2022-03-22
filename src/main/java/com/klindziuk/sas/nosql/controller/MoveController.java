@@ -42,16 +42,16 @@ public class MoveController {
   }
 
   @PostMapping("/save")
-  public Move saveMove( @RequestBody MoveDto moveDto){
+  public Move saveMove(@RequestBody MoveDto moveDto) {
     Long targetNodeId = moveDto.getTargetNodeId();
-    Move move = new Move();
-    move.setC(moveDto.getC());
-    move.setE(moveDto.getE());
-    move.setM(moveDto.getM());
-    move.setE(moveDto.getE());
-    if(Objects.nonNull(targetNodeId)) {
+    Move move = new Move()
+        .setC(moveDto.getC())
+        .setN(moveDto.getN())
+        .setM(moveDto.getM())
+        .setE(moveDto.getE());
+    if (Objects.nonNull(targetNodeId)) {
       Optional<Move> byId = moveRepository.findById(targetNodeId);
-      if(byId.isPresent()){
+      if (byId.isPresent()) {
         Move moveToSave = byId.get();
         moveToSave.getMoves().add(move);
         moveRepository.save(moveToSave);

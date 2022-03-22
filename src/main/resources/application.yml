@@ -3,7 +3,7 @@ server:
 spring:
   data:
     neo4j:
-      uri: bolt://localhost:11003
+      uri: bolt://localhost:7687/chegura
     authentication:
       username: neo4j
       password: secret
