@@ -1,7 +1,7 @@
 # NOSQL database selection for [Chegura project](https://github.com/Scorpibear/chegura)
 
-* Status: __DECIDED__
-* Date: 21-03-2021
+- Status: __DECIDED__
+- Date: 21-03-2021
 
 ## PROBLEM
 
@@ -92,11 +92,13 @@
 - Database should provide data pretty fast and can retrieve massive data in a few seconds
 - Database should support three-data structure
 - Database should support ACID transactions
-
-## DECISION RATIONALE 
-- Why we make this? According to [CAP Consideration](https://www.geeksforgeeks.org/how-to-choose-the-right-database-for-your-application/) relational databases suits our needs better (Consistency and Availability are preferable options). Also we need good support of R2DBC Driver and PostgreSQL shows better performance with it.
-
+ 
 ## DECISION
 - Going with Neo4J
 
-
+## DECISION RATIONALE
+- Neo4J provides data pretty fast and can retrieve massive data in a few seconds
+- Neo4J supports three-data structure
+- Neo4J supports ACID transactions
+- Neo4j has SQL like query language
+- Personally I don't have experience with Neo4j, so it will be a possibility for me to learn something new
