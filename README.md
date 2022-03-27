@@ -22,3 +22,9 @@ http://localhost:8080/swagger-ui/index.html
 
 ## Architecture
 Using https://adr.github.io/, so you can find decisions in __docs__ folder
+
+## Performance Test
+- Open `Terminal` and execute following command
+```bash
+./gradlew clean gatlingRun-moves.MoveSimulation
+```

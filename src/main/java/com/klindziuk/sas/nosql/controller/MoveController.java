@@ -7,6 +7,7 @@ import com.klindziuk.sas.nosql.repository.MoveRepository;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,9 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class MoveController {
 
   private final MoveRepository moveRepository;
+  private final MoveMapper moveMapper;
 
-  public MoveController(MoveRepository moveRepository) {
+  @Autowired
+  public MoveController(MoveRepository moveRepository,
+      MoveMapper moveMapper) {
     this.moveRepository = moveRepository;
+    this.moveMapper = moveMapper;
   }
 
   @GetMapping
@@ -34,7 +39,7 @@ public class MoveController {
     return moveRepository.findMoveById(id);
   }
 
-  @GetMapping("/{m}")
+  @GetMapping("/move/{m}")
   public List<Move> getMoveByM(@PathVariable String m) {
     return moveRepository.getAllMovesByM(m);
   }
@@ -42,7 +47,7 @@ public class MoveController {
   @PostMapping("/save")
   public Move saveMove(@RequestBody MoveDto moveDto) {
     final Long targetNodeId = moveDto.getTargetNodeId();
-    final Move move = MoveMapper.MAPPER.toMove(moveDto);
+    final Move move = moveMapper.toMove(moveDto);
     if (Objects.nonNull(targetNodeId)) {
       Optional<Move> byId = moveRepository.findById(targetNodeId);
       if (byId.isPresent()) {
